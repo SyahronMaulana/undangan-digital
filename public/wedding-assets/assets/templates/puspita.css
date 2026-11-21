@@ -1,0 +1,934 @@
+/* =====================================================================
+   PUSPITA — Javanese Heritage Wedding
+   Hijau zamrud, emas, batik parang & kawung, gunungan wayang.
+   ===================================================================== */
+
+.tpl-puspita {
+    --bg: #f7f0e1;
+    --paper: #f7f0e1;
+    --paper-2: #efe4cd;
+    --card: #fbf6e9;
+    --ink: #1e2b22;
+    --ink-soft: #3c4d3f;
+    --muted: #7b7a62;
+    --accent: #a8842f;
+    --accent-2: #d4af55;
+    --accent-soft: rgba(168, 132, 47, .12);
+    --line: rgba(168, 132, 47, .34);
+    --field-bg: rgba(255, 252, 243, .7);
+    --field-radius: 0px;
+    --btn-ink: #fffaf0;
+    --btn-radius: 0px;
+    --dock-bg: rgba(18, 60, 46, .96);
+    --dock-ink: #e8d7a8;
+    --display: 'Playfair Display', 'Times New Roman', serif;
+    --body: 'Lora', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 16.5px;
+}
+
+.tpl-puspita .pus-main { overflow: hidden; }
+
+.tpl-puspita .pus-wrap {
+    position: relative;
+    z-index: 2;
+    width: min(1060px, calc(100% - 40px));
+    margin-inline: auto;
+}
+.tpl-puspita .pus-narrow { width: min(720px, calc(100% - 40px)); }
+
+.tpl-puspita .pus-kicker {
+    display: inline-block;
+    font-family: var(--body);
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .36em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.tpl-puspita .pus-title {
+    margin: 10px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.8rem, 5vw, 2.9rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: .01em;
+}
+
+.tpl-puspita .pus-sub {
+    margin: 10px 0 0;
+    font-family: var(--body);
+    font-size: .8rem;
+    font-style: italic;
+    letter-spacing: .04em;
+    color: var(--muted);
+}
+
+.tpl-puspita .pus-head { margin-bottom: clamp(32px, 5vw, 52px); text-align: center; }
+
+.tpl-puspita .pus-batik {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url('../images/pattern-parang.svg');
+    background-size: 130px 130px;
+    opacity: .14;
+}
+
+.tpl-puspita .pus-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border: 1px solid var(--accent);
+    border-radius: 0;
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--body);
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background .25s ease, color .25s ease;
+}
+.tpl-puspita .pus-btn:hover { background: var(--accent); color: var(--btn-ink); }
+.tpl-puspita .pus-btn-solid { background: var(--accent); color: var(--btn-ink); }
+.tpl-puspita .pus-btn-solid:hover { background: #8d6d24; }
+.tpl-puspita .pus-btn .tpl-icon { width: 14px; height: 14px; }
+
+/* ---------------------------------------------------------------------
+   Cover
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-cover {
+    background:
+        radial-gradient(600px 520px at 50% 18%, rgba(212, 175, 85, .16), transparent 66%),
+        linear-gradient(165deg, #174634, #123829 55%, #0d2c20);
+    color: #f7f0e1;
+}
+
+.tpl-puspita .pus-batik-cover {
+    inset: -2px;
+    opacity: .18;
+    background-size: 152px 152px;
+    mask-image: radial-gradient(circle at 50% 45%, #000 20%, transparent 78%);
+    -webkit-mask-image: radial-gradient(circle at 50% 45%, #000 20%, transparent 78%);
+}
+
+.tpl-puspita .pus-gunungan {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    width: min(560px, 92vw);
+    transform: translateX(-50%);
+    color: var(--accent-2);
+    opacity: .3;
+    pointer-events: none;
+}
+.tpl-puspita .pus-gunungan svg { width: 100%; height: auto; }
+
+.tpl-puspita .pus-cover-inner {
+    position: relative;
+    z-index: 3;
+    width: min(520px, 100%);
+    padding: clamp(26px, 5vw, 44px) clamp(20px, 5vw, 40px);
+    border: 1px solid rgba(212, 175, 85, .5);
+    outline: 1px solid rgba(212, 175, 85, .18);
+    outline-offset: 7px;
+    background: rgba(9, 30, 22, .42);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    text-align: center;
+}
+
+.tpl-puspita .pus-javanese {
+    margin: 0;
+    font-family: 'Noto Serif Javanese', var(--display);
+    font-size: clamp(1.7rem, 5vw, 2.4rem);
+    line-height: 1.3;
+    color: var(--accent-2);
+}
+
+.tpl-puspita .pus-eyebrow {
+    margin: 6px 0 0;
+    font-family: var(--body);
+    font-size: .56rem;
+    letter-spacing: .42em;
+    text-transform: uppercase;
+    color: rgba(247, 240, 225, .74);
+}
+
+.tpl-puspita .pus-cover-names {
+    margin: 14px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 6.2vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.35;
+    color: #fbf4e2;
+}
+.tpl-puspita .pus-cover-names span { display: block; }
+.tpl-puspita .pus-cover-names em {
+    display: block;
+    font-size: .52em;
+    font-style: italic;
+    color: var(--accent-2);
+    line-height: 1.1;
+}
+
+.tpl-puspita .pus-cover-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 14px auto 10px;
+    color: var(--accent-2);
+}
+.tpl-puspita .pus-cover-divider span { display: block; width: 48px; height: 1px; background: rgba(212, 175, 85, .55); }
+.tpl-puspita .pus-cover-divider svg { width: 14px; height: 14px; }
+
+.tpl-puspita .pus-cover-date {
+    margin: 0;
+    font-family: var(--body);
+    font-size: .64rem;
+    letter-spacing: .14em;
+    color: #f3e7c9;
+}
+.tpl-puspita .pus-cover-venue {
+    margin: 4px 0 0;
+    font-family: var(--body);
+    font-size: .62rem;
+    font-style: italic;
+    color: rgba(247, 240, 225, .62);
+}
+
+.tpl-puspita .pus-guest { margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(212, 175, 85, .3); }
+.tpl-puspita .pus-guest span { font-family: var(--body); font-size: .52rem; letter-spacing: .22em; color: rgba(247, 240, 225, .66); }
+.tpl-puspita .pus-guest strong { font-family: var(--display); font-size: 1.25rem; color: #fbf4e2; }
+
+.tpl-puspita .pus-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 18px;
+    padding: 13px 28px;
+    border: 1px solid var(--accent-2);
+    background: rgba(212, 175, 85, .1);
+    color: var(--accent-2);
+    font-family: var(--body);
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    transition: background .25s ease, color .25s ease;
+}
+.tpl-puspita .pus-open:hover { background: var(--accent-2); color: #123829; }
+.tpl-puspita .pus-open .tpl-icon { width: 14px; height: 14px; }
+
+.tpl-puspita .pus-cover-foot {
+    position: absolute;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: 50%;
+    z-index: 3;
+    transform: translateX(-50%);
+    margin: 0;
+    font-family: var(--body);
+    font-size: .52rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: rgba(212, 175, 85, .7);
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-hero {
+    position: relative;
+    padding: clamp(72px, 11vw, 130px) 0 clamp(56px, 9vw, 90px);
+    overflow: hidden;
+    background:
+        radial-gradient(640px 420px at 50% 0, rgba(168, 132, 47, .1), transparent 70%),
+        var(--paper);
+    border-bottom: 1px solid var(--line);
+}
+.tpl-puspita .pus-batik-hero {
+    opacity: .075;
+    background-image: url('../images/pattern-kawung.svg');
+    background-size: 170px 170px;
+    mask-image: linear-gradient(180deg, #000, transparent 88%);
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent 88%);
+}
+.tpl-puspita .pus-hero-inner { text-align: center; }
+
+.tpl-puspita .pus-arabic {
+    margin: 0 0 14px;
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 1.6rem;
+    color: var(--ink-soft);
+}
+
+.tpl-puspita .pus-hero-names {
+    margin: 16px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 5.4vw, 2.9rem);
+    font-weight: 500;
+    line-height: 1.3;
+}
+.tpl-puspita .pus-hero-names span { display: block; }
+.tpl-puspita .pus-hero-names em {
+    display: block;
+    font-size: .54em;
+    font-style: italic;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.tpl-puspita .pus-hero-frame {
+    position: relative;
+    max-width: 620px;
+    margin: 26px auto 0;
+    padding: clamp(20px, 4vw, 30px) clamp(20px, 4vw, 34px);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: rgba(251, 246, 233, .6);
+}
+.tpl-puspita .pus-hero-frame::before,
+.tpl-puspita .pus-hero-frame::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--accent);
+    transform: rotate(45deg);
+    background: var(--paper);
+}
+.tpl-puspita .pus-hero-frame::before { top: -5px; left: 50%; margin-left: -5px; }
+.tpl-puspita .pus-hero-frame::after { bottom: -5px; left: 50%; margin-left: -5px; }
+.tpl-puspita .pus-hero-frame p {
+    margin: 0;
+    font-size: .9rem;
+    line-height: 1.9;
+    color: var(--ink-soft);
+}
+
+.tpl-puspita .pus-hero-date {
+    margin: 20px 0 0;
+    font-family: var(--body);
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.tpl-puspita .pus-scroll {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 26px;
+    font-family: var(--body);
+    font-size: .56rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+}
+.tpl-puspita .pus-scroll .tpl-icon { width: 15px; height: 15px; animation: pus-bob 2.8s ease-in-out infinite; }
+@keyframes pus-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* ---------------------------------------------------------------------
+   Sections
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-section { position: relative; padding: clamp(60px, 9vw, 108px) 0; }
+
+/* ---------------------------------------------------------------------
+   Couple
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-couple { background: var(--paper); }
+.tpl-puspita .pus-couple-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: clamp(16px, 3vw, 44px);
+    align-items: center;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.tpl-puspita .pus-person { text-align: center; }
+
+.tpl-puspita .pus-person-frame {
+    position: relative;
+    width: min(300px, 90%);
+    margin-inline: auto;
+    padding: 10px;
+    background: linear-gradient(150deg, #e8d7a8, #b39242 40%, #e8d7a8 70%, #a8842f);
+    box-shadow: 0 18px 44px rgba(30, 43, 34, .16);
+    transition: transform .3s ease;
+}
+.tpl-puspita .pus-person-frame::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(18, 56, 41, .55);
+    z-index: 2;
+    pointer-events: none;
+}
+.tpl-puspita .pus-person-frame img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: saturate(.88) contrast(1.02);
+}
+.tpl-puspita .pus-corner {
+    position: absolute;
+    z-index: 3;
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(251, 246, 233, .9);
+}
+.tpl-puspita .pus-corner-tl { top: 14px; left: 14px; border-right: 0; border-bottom: 0; }
+.tpl-puspita .pus-corner-tr { top: 14px; right: 14px; border-left: 0; border-bottom: 0; }
+.tpl-puspita .pus-corner-bl { bottom: 14px; left: 14px; border-right: 0; border-top: 0; }
+.tpl-puspita .pus-corner-br { bottom: 14px; right: 14px; border-left: 0; border-top: 0; }
+
+.tpl-puspita .pus-role {
+    margin: 18px 0 0;
+    font-family: var(--body);
+    font-size: .54rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.tpl-puspita .pus-person h3 {
+    margin: 6px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.35rem, 3.2vw, 1.7rem);
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+.tpl-puspita .pus-parents {
+    max-width: 270px;
+    margin: 6px auto 0;
+    font-size: .78rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+.tpl-puspita .pus-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    font-size: .7rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+.tpl-puspita .pus-social .tpl-icon { width: 12px; height: 12px; }
+
+.tpl-puspita .pus-amp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+}
+.tpl-puspita .pus-amp em {
+    font-family: var(--display);
+    font-size: clamp(2.2rem, 4.6vw, 3rem);
+    font-style: italic;
+    line-height: 1;
+}
+.tpl-puspita .pus-amp-line { display: block; width: 1px; height: 46px; background: var(--line); }
+
+/* ---------------------------------------------------------------------
+   Quote
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-quote {
+    position: relative;
+    padding: clamp(56px, 8vw, 94px) 0;
+    overflow: hidden;
+    background:
+        linear-gradient(160deg, #143d2d, #0f3023);
+    color: #f7f0e1;
+}
+.tpl-puspita .pus-quote::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/pattern-kawung.svg');
+    background-size: 160px 160px;
+    opacity: .1;
+    pointer-events: none;
+}
+.tpl-puspita .pus-quote-panel {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin-inline: auto;
+    padding: clamp(30px, 5vw, 50px) clamp(22px, 5vw, 56px);
+    border: 1px solid rgba(212, 175, 85, .42);
+    text-align: center;
+}
+.tpl-puspita .pus-quote-ornament { display: block; font-size: 1rem; color: var(--accent-2); }
+.tpl-puspita .pus-quote blockquote {
+    margin: 12px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+    font-style: italic;
+    line-height: 1.8;
+    color: #f3e7c9;
+}
+.tpl-puspita .pus-quote cite {
+    display: block;
+    margin-top: 18px;
+    font-family: var(--body);
+    font-size: .56rem;
+    font-style: normal;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+
+/* ---------------------------------------------------------------------
+   Countdown
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-countdown-section { background: var(--paper-2); }
+.tpl-puspita .pus-countdown-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/pattern-kawung.svg');
+    background-size: 150px 150px;
+    opacity: .06;
+    pointer-events: none;
+}
+.tpl-puspita .pus-countdown {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(6px, 1.6vw, 12px);
+    max-width: 720px;
+    margin-inline: auto;
+}
+.tpl-puspita .pus-count {
+    padding: clamp(16px, 3vw, 24px) 4px;
+    border: 1px solid var(--line);
+    background: rgba(251, 246, 233, .8);
+    text-align: center;
+}
+.tpl-puspita .pus-count strong {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 4.2vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1;
+    color: #123829;
+    font-variant-numeric: tabular-nums;
+}
+.tpl-puspita .pus-count span {
+    display: block;
+    margin-top: 8px;
+    font-family: var(--body);
+    font-size: .5rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------
+   Events
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-events { background: var(--paper); }
+.tpl-puspita .pus-event-list {
+    max-width: 780px;
+    margin-inline: auto;
+    border-top: 1px solid var(--line);
+}
+.tpl-puspita .pus-event {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: clamp(14px, 3vw, 30px);
+    padding: clamp(24px, 4vw, 38px) 0;
+    border-bottom: 1px solid var(--line);
+}
+.tpl-puspita .pus-event-marker {
+    display: grid;
+    place-items: center;
+    align-self: start;
+    width: 54px;
+    height: 54px;
+    margin-top: 4px;
+    border: 1px solid var(--accent);
+    transform: rotate(45deg);
+    color: var(--accent);
+}
+.tpl-puspita .pus-event-marker span {
+    transform: rotate(-45deg);
+    font-family: var(--display);
+    font-size: 1.2rem;
+}
+.tpl-puspita .pus-event-card { min-width: 0; }
+.tpl-puspita .pus-event-kicker {
+    margin: 0;
+    font-family: var(--body);
+    font-size: .52rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.tpl-puspita .pus-event h3 {
+    margin: 4px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 3vw, 1.7rem);
+    font-weight: 600;
+}
+.tpl-puspita .pus-event-date { margin: 8px 0 0; font-size: .84rem; color: var(--ink-soft); }
+.tpl-puspita .pus-event-time {
+    margin: 2px 0 0;
+    font-size: .58rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.tpl-puspita .pus-event-line { display: block; width: 100%; margin: 14px 0 12px; border-top: 1px dashed rgba(168, 132, 47, .38); }
+.tpl-puspita .pus-event-venue { margin: 0; font-family: var(--display); font-size: 1.05rem; font-weight: 600; }
+.tpl-puspita .pus-event-address { margin: 4px 0 16px; font-size: .78rem; line-height: 1.7; color: var(--muted); }
+.tpl-puspita .pus-live { margin-top: 32px; text-align: center; }
+.tpl-puspita .pus-live p { margin: 0 0 12px; font-size: .82rem; font-style: italic; color: var(--muted); }
+
+/* ---------------------------------------------------------------------
+   Story
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-story {
+    position: relative;
+    overflow: hidden;
+    background: #123829;
+    color: #f7f0e1;
+}
+.tpl-puspita .pus-story::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../images/pattern-parang.svg');
+    background-size: 140px 140px;
+    opacity: .08;
+    pointer-events: none;
+}
+.tpl-puspita .pus-story .pus-kicker { color: var(--accent-2); }
+.tpl-puspita .pus-story .pus-sub { color: rgba(247, 240, 225, .58); }
+.tpl-puspita .pus-story-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 2.6vw, 24px);
+}
+.tpl-puspita .pus-story-card {
+    position: relative;
+    padding: clamp(24px, 4vw, 36px);
+    border: 1px solid rgba(212, 175, 85, .3);
+    background: rgba(9, 30, 22, .5);
+    overflow: hidden;
+}
+.tpl-puspita .pus-story-batik {
+    position: absolute;
+    right: -18px;
+    bottom: -18px;
+    width: 90px;
+    height: 90px;
+    background-image: url('../images/pattern-kawung.svg');
+    background-size: 90px 90px;
+    opacity: .18;
+    pointer-events: none;
+}
+.tpl-puspita .pus-story-date {
+    margin: 0;
+    font-family: var(--body);
+    font-size: .56rem;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+.tpl-puspita .pus-story-card h3 {
+    margin: 8px 0 0;
+    font-family: var(--display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fbf4e2;
+}
+.tpl-puspita .pus-story-card p { margin: 7px 0 0; font-size: .82rem; line-height: 1.8; color: rgba(247, 240, 225, .72); }
+
+/* ---------------------------------------------------------------------
+   Gallery
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-gallery-section { background: var(--paper-2); }
+.tpl-puspita .pus-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 180px;
+    gap: 8px;
+}
+.tpl-puspita .pus-photo {
+    position: relative;
+    padding: 0;
+    border: 1px solid rgba(168, 132, 47, .3);
+    background: #0f3023;
+    cursor: zoom-in;
+    overflow: hidden;
+}
+.tpl-puspita .pus-photo.is-feature { grid-row: span 2; grid-column: span 2; }
+.tpl-puspita .pus-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(.9) contrast(1.03);
+    transition: transform .9s cubic-bezier(.2, .7, .2, 1), filter .4s ease;
+}
+.tpl-puspita .pus-photo:hover img { transform: scale(1.05); filter: saturate(1); }
+.tpl-puspita .pus-photo-frame {
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(212, 175, 85, .5);
+    opacity: 0;
+    transition: opacity .3s ease;
+    pointer-events: none;
+}
+.tpl-puspita .pus-photo:hover .pus-photo-frame { opacity: 1; }
+.tpl-puspita .pus-hashtag {
+    margin: 26px 0 0;
+    font-family: var(--body);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .26em;
+    text-align: center;
+    color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------
+   Gifts
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-gifts { background: var(--paper); }
+.tpl-puspita .pus-gift-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    max-width: 760px;
+    margin-inline: auto;
+}
+.tpl-puspita .pus-gift {
+    position: relative;
+    padding: 34px 24px 26px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    text-align: center;
+    overflow: hidden;
+}
+.tpl-puspita .pus-gift-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 42px solid rgba(168, 132, 47, .16);
+    border-right: 42px solid transparent;
+}
+.tpl-puspita .pus-gift-bank {
+    display: inline-block;
+    padding: 3px 12px;
+    border: 1px solid var(--line);
+    font-family: var(--body);
+    font-size: .52rem;
+    font-weight: 600;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.tpl-puspita .pus-gift-number {
+    margin: 14px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.2rem, 3.2vw, 1.5rem);
+    font-weight: 600;
+    letter-spacing: .06em;
+    word-break: break-all;
+}
+.tpl-puspita .pus-gift-name { margin: 3px 0 18px; font-size: .72rem; color: var(--muted); }
+.tpl-puspita .pus-gift .pus-btn { width: 100%; }
+
+/* ---------------------------------------------------------------------
+   RSVP / wishes
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-rsvp {
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+}
+.tpl-puspita .pus-wishes { background: var(--paper); }
+.tpl-puspita .pus-form-panel {
+    padding: clamp(22px, 4.5vw, 40px);
+    border: 1px solid var(--line);
+    background: var(--card);
+    box-shadow: 0 16px 40px rgba(30, 43, 34, .07);
+}
+.tpl-puspita .tw-label { font-family: var(--body); font-size: .54rem; letter-spacing: .24em; }
+.tpl-puspita .tw-btn { background: #123829; color: #f3e7c9; letter-spacing: .24em; }
+.tpl-puspita .tw-btn:hover { background: #0d2c20; filter: none; }
+.tpl-puspita .tw-choice { background: rgba(247, 240, 225, .55); }
+.tpl-puspita .tw-wish { background: rgba(247, 240, 225, .5); }
+.tpl-puspita .tw-wish-head strong { color: #123829; }
+.tpl-puspita .tw-alert-ok { --ok-bg: #eaf3ea; --ok-ink: #1d4b30; --ok-line: #b9d6bf; }
+.tpl-puspita .tw-alert-error { --err-bg: #fbeeee; --err-ink: #7a2222; --err-line: #e6b6b6; }
+
+/* ---------------------------------------------------------------------
+   Closing
+   --------------------------------------------------------------------- */
+.tpl-puspita .pus-closing {
+    position: relative;
+    padding: clamp(76px, 11vw, 140px) 0 clamp(56px, 8vw, 86px);
+    overflow: hidden;
+    background:
+        radial-gradient(600px 400px at 50% 0, rgba(212, 175, 85, .12), transparent 70%),
+        #0f3023;
+    color: #f7f0e1;
+    text-align: center;
+}
+.tpl-puspita .pus-batik-closing {
+    inset: 0;
+    opacity: .09;
+    background-image: url('../images/pattern-parang.svg'), url('../images/pattern-kawung.svg');
+    background-size: 150px 150px, 190px 190px;
+}
+.tpl-puspita .pus-closing-inner { position: relative; z-index: 2; }
+.tpl-puspita .pus-closing-ornament { display: block; font-size: 1.1rem; color: var(--accent-2); }
+.tpl-puspita .pus-closing-kicker {
+    margin: 12px 0 0;
+    font-family: var(--body);
+    font-size: .56rem;
+    letter-spacing: .4em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+}
+.tpl-puspita .pus-closing-text {
+    max-width: 660px;
+    margin: 18px auto 0;
+    font-family: var(--display);
+    font-size: clamp(1rem, 2.2vw, 1.16rem);
+    font-style: italic;
+    line-height: 1.9;
+    color: rgba(247, 240, 225, .82);
+}
+.tpl-puspita .pus-closing-names {
+    margin: 30px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 4.6vw, 2.2rem);
+    font-weight: 500;
+    color: #fbf4e2;
+}
+.tpl-puspita .pus-closing-names em { color: var(--accent-2); font-size: .7em; }
+.tpl-puspita .pus-closing-date {
+    margin: 8px 0 0;
+    font-family: var(--body);
+    font-size: .56rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: rgba(247, 240, 225, .58);
+}
+.tpl-puspita .pus-closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 28px;
+}
+.tpl-puspita .pus-btn-light { border-color: var(--accent-2); color: var(--accent-2); }
+.tpl-puspita .pus-btn-light:hover { background: var(--accent-2); color: #123829; }
+.tpl-puspita .pus-credit {
+    margin: 42px 0 0;
+    font-family: var(--body);
+    font-size: .5rem;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: rgba(247, 240, 225, .42);
+}
+
+/* Butir emas dan gerak gunungan */
+.tpl-puspita .pus-gunungan {
+    animation: pus-gunungan-float 9s ease-in-out infinite;
+}
+@keyframes pus-gunungan-float {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, -10px); }
+}
+
+.pus-sparkles {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+.pus-sparkles span {
+    position: absolute;
+    bottom: -12px;
+    border-radius: 0;
+    background: rgba(212, 175, 85, .8);
+    transform: rotate(45deg);
+    animation: pus-spark-rise linear infinite;
+}
+@keyframes pus-spark-rise {
+    0% { transform: translateY(0) rotate(45deg); opacity: 0; }
+    12% { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(225deg); opacity: 0; }
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------- */
+@media (max-width: 860px) {
+    .tpl-puspita .pus-couple-grid { grid-template-columns: 1fr; gap: 22px; }
+    .tpl-puspita .pus-amp { flex-direction: row; }
+    .tpl-puspita .pus-amp-line { width: 46px; height: 1px; }
+    .tpl-puspita .pus-gallery { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+}
+
+@media (max-width: 680px) {
+    .tpl-puspita .pus-event-list { border-top: 0; }
+    .tpl-puspita .pus-event { grid-template-columns: 44px 1fr; gap: 14px; }
+    .tpl-puspita .pus-event-marker { width: 38px; height: 38px; }
+    .tpl-puspita .pus-event-marker span { font-size: .95rem; }
+    .tpl-puspita .pus-story-grid,
+    .tpl-puspita .pus-gift-grid { grid-template-columns: 1fr; }
+    .tpl-puspita .pus-countdown { grid-template-columns: repeat(2, 1fr); }
+    .tpl-puspita .pus-cover-venue { display: none; }
+}
+
+/* Inisial mempelai (pengganti foto bila tidak diunggah) */
+.tpl-puspita .pus-initials {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: linear-gradient(160deg, #f6f0df, #e3d7b6);
+    color: #123829;
+    font-family: var(--display, serif);
+    font-size: clamp(2.8rem, 10vw, 4.2rem);
+    font-weight: 500;
+    letter-spacing: .06em;
+    line-height: 1;
+}
+
+/* Kontrol musik: ikon berdenyut saat diputar */
+.tpl-puspita [data-music-toggle].is-playing .tpl-icon { animation: pus-music-beat 1.5s ease-in-out infinite; }
+@keyframes pus-music-beat {
+    0%, 100% { transform: scale(1); }
+    30% { transform: scale(1.2); }
+    60% { transform: scale(.96); }
+}

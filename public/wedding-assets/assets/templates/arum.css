@@ -1,0 +1,889 @@
+/* =====================================================================
+   ARUM — Rustic Scrapbook Wedding
+   Kertas kraft, terakota, selotip, dan potret polaroid.
+   ===================================================================== */
+
+.tpl-arum {
+    --bg: #f3e9d7;
+    --paper: #f8f1e3;
+    --paper-2: #eadfc8;
+    --card: #fffaf0;
+    --ink: #3d2f26;
+    --ink-soft: #5e4a3b;
+    --muted: #8b7461;
+    --accent: #b4573b;
+    --accent-2: #d98a63;
+    --accent-soft: rgba(180, 87, 59, .1);
+    --line: rgba(94, 74, 59, .22);
+    --field-bg: rgba(255, 250, 240, .72);
+    --field-radius: 4px;
+    --btn-ink: #fffaf0;
+    --btn-radius: 4px;
+    --dock-bg: rgba(61, 47, 38, .94);
+    --dock-ink: #f3e9d7;
+    --display: 'Cormorant Garamond', Georgia, serif;
+    --body: 'Karla', 'Segoe UI', sans-serif;
+    --script: 'Caveat', cursive;
+    background:
+        radial-gradient(circle at 18% 12%, rgba(180, 87, 59, .06), transparent 45%),
+        radial-gradient(circle at 84% 78%, rgba(107, 112, 82, .08), transparent 46%),
+        var(--bg);
+    color: var(--ink);
+    font-size: 16.5px;
+}
+
+.tpl-arum .arm-main { overflow: hidden; }
+
+.tpl-arum .arm-paper-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: .55;
+    pointer-events: none;
+    background-image:
+        repeating-linear-gradient(0deg, rgba(94, 74, 59, .045) 0 1px, transparent 1px 3px),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, .3) 0 1px, transparent 1px 5px);
+    mix-blend-mode: multiply;
+}
+
+.tpl-arum .arm-wrap {
+    width: min(1060px, calc(100% - 40px));
+    margin-inline: auto;
+}
+
+.tpl-arum .arm-narrow { width: min(700px, calc(100% - 40px)); }
+
+.tpl-arum .arm-hand {
+    margin: 0;
+    font-family: var(--script);
+    font-size: clamp(1.35rem, 3.6vw, 1.85rem);
+    line-height: 1.2;
+    color: var(--accent);
+    transform: rotate(-1.5deg);
+}
+
+.tpl-arum .arm-label {
+    display: inline-block;
+    font-family: var(--body);
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.tpl-arum .arm-title {
+    margin: 6px 0 0;
+    font-family: var(--display);
+    font-size: clamp(2rem, 6vw, 3.3rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -.01em;
+    color: var(--ink);
+}
+
+.tpl-arum .arm-head { margin-bottom: clamp(30px, 5vw, 50px); }
+
+.tpl-arum .arm-tape {
+    position: absolute;
+    z-index: 3;
+    width: 98px;
+    height: 26px;
+    background: rgba(228, 207, 164, .78);
+    box-shadow: 0 1px 4px rgba(61, 47, 38, .16);
+    clip-path: polygon(3% 0, 100% 2%, 97% 100%, 0 96%);
+}
+.tpl-arum .arm-tape-tl { top: -12px; left: 22px; transform: rotate(-5deg); }
+.tpl-arum .arm-tape-tr { top: -12px; right: 22px; transform: rotate(4deg); }
+
+/* ---------------------------------------------------------------------
+   Cover
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-cover {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(180, 87, 59, .1), transparent 45%),
+        linear-gradient(160deg, #f8f1e3, #ecdfc7 70%, #e6d5b8);
+    color: var(--ink);
+}
+
+.tpl-arum .arm-cover-card {
+    position: relative;
+    width: min(470px, 100%);
+    padding: clamp(20px, 4vw, 32px) clamp(18px, 4vw, 30px) clamp(26px, 4vw, 34px);
+    background:
+        repeating-linear-gradient(0deg, rgba(94, 74, 59, .035) 0 1px, transparent 1px 4px),
+        #fffaf0;
+    box-shadow: 0 22px 60px rgba(61, 47, 38, .22);
+    transform: rotate(-.6deg);
+}
+
+.tpl-arum .arm-cover-photo {
+    position: relative;
+    padding: 9px 9px 34px;
+    background: #fff;
+    box-shadow: 0 8px 22px rgba(61, 47, 38, .18);
+    transform: rotate(1.4deg);
+}
+.tpl-arum .arm-cover-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 3.4;
+    object-fit: cover;
+    filter: sepia(.14) saturate(.92) contrast(1.02);
+}
+.tpl-arum .arm-photo-caption {
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    right: 0;
+    font-family: var(--script);
+    font-size: 1.12rem;
+    text-align: center;
+    color: var(--ink-soft);
+}
+
+.tpl-arum .arm-cover-card .arm-hand {
+    margin-top: 20px;
+    text-align: center;
+    transform: rotate(-2.4deg);
+}
+
+.tpl-arum .arm-cover-names {
+    margin: 4px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 6.4vw, 2.7rem);
+    font-weight: 500;
+    line-height: 1.05;
+    text-align: center;
+    color: var(--ink);
+}
+.tpl-arum .arm-cover-amp {
+    display: inline-block;
+    margin: 0 .12em;
+    font-family: var(--script);
+    font-size: .82em;
+    color: var(--accent);
+    transform: rotate(-6deg);
+}
+
+.tpl-arum .arm-cover-date {
+    margin: 12px 0 0;
+    font-family: var(--body);
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .32em;
+    text-align: center;
+    color: var(--muted);
+}
+
+.tpl-arum .arm-guest { margin-top: 20px; text-align: center; }
+.tpl-arum .arm-guest span { font-family: var(--body); font-size: .54rem; letter-spacing: .24em; }
+.tpl-arum .arm-guest strong {
+    font-family: var(--script);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.tpl-arum .arm-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 13px 20px;
+    border: 1px dashed var(--accent);
+    border-radius: 3px;
+    background: rgba(180, 87, 59, .06);
+    color: var(--accent);
+    font-family: var(--body);
+    font-size: .62rem;
+    font-weight: 700;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    transition: background .25s ease, color .25s ease;
+}
+.tpl-arum .arm-open:hover { background: var(--accent); color: var(--btn-ink); }
+.tpl-arum .arm-open .tpl-icon { width: 14px; height: 14px; }
+
+.tpl-arum .arm-cover-foot {
+    position: absolute;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    font-family: var(--script);
+    font-size: 1rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-hero {
+    position: relative;
+    padding: clamp(64px, 10vw, 120px) 0 clamp(50px, 8vw, 86px);
+    background: linear-gradient(180deg, #f3e9d7, #efe2cd);
+}
+
+.tpl-arum .arm-hero .arm-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
+    gap: clamp(26px, 5vw, 64px);
+    align-items: center;
+}
+
+.tpl-arum .arm-hero-note {
+    position: relative;
+    padding: clamp(26px, 4vw, 42px);
+    background: #fffaf0;
+    box-shadow: 0 14px 40px rgba(61, 47, 38, .12);
+    transform: rotate(-.8deg);
+}
+.tpl-arum .arm-hero-note::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(94, 74, 59, .16);
+    pointer-events: none;
+}
+
+.tpl-arum .arm-arabic {
+    margin: 0 0 14px;
+    font-family: 'Traditional Arabic', 'Scheherazade New', serif;
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--ink-soft);
+}
+
+.tpl-arum .arm-hero-hand { font-size: clamp(1.6rem, 4vw, 2.2rem); }
+
+.tpl-arum .arm-hero-text {
+    margin: 12px 0 0;
+    font-size: .95rem;
+    line-height: 1.85;
+    color: var(--ink-soft);
+}
+
+.tpl-arum .arm-hero-sign {
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(94, 74, 59, .28);
+}
+.tpl-arum .arm-hero-sign span {
+    display: block;
+    font-size: .68rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.tpl-arum .arm-hero-sign strong {
+    display: block;
+    margin-top: 2px;
+    font-family: var(--script);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.tpl-arum .arm-paperclip {
+    position: absolute;
+    top: -14px;
+    right: 26px;
+    width: 18px;
+    height: 44px;
+    border: 2px solid #9c9284;
+    border-radius: 10px;
+    transform: rotate(12deg);
+    opacity: .8;
+}
+.tpl-arum .arm-paperclip::after {
+    content: '';
+    position: absolute;
+    inset: 4px 3px 6px;
+    border: 2px solid #9c9284;
+    border-radius: 8px;
+}
+
+.tpl-arum .arm-hero-strip {
+    position: relative;
+    padding: 10px 10px 38px;
+    background: #fff;
+    box-shadow: 0 16px 38px rgba(61, 47, 38, .2);
+    transform: rotate(2.6deg);
+}
+.tpl-arum .arm-hero-strip img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; filter: sepia(.12); }
+.tpl-arum .arm-strip-tape {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    width: 90px;
+    height: 26px;
+    transform: translateX(-50%) rotate(-3deg);
+    background: rgba(228, 207, 164, .8);
+    clip-path: polygon(2% 0, 100% 3%, 98% 100%, 0 95%);
+}
+.tpl-arum .arm-hero-strip p {
+    position: absolute;
+    bottom: 8px;
+    left: 10px;
+    right: 10px;
+    margin: 0;
+    font-family: var(--script);
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--ink-soft);
+}
+
+.tpl-arum .arm-scroll {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    font-family: var(--script);
+    font-size: 1.2rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+.tpl-arum .arm-scroll .tpl-icon { width: 16px; height: 16px; animation: arm-bob 2.6s ease-in-out infinite; }
+@keyframes arm-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* ---------------------------------------------------------------------
+   Section base
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-section { position: relative; padding: clamp(58px, 9vw, 108px) 0; }
+.tpl-arum .arm-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: min(1060px, calc(100% - 40px));
+    height: 1px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(90deg, var(--line) 0 7px, transparent 7px 13px);
+}
+
+/* ---------------------------------------------------------------------
+   Couple
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-couple { background: #efe2cd; }
+.tpl-arum .arm-couple-board {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: clamp(14px, 3vw, 44px);
+    align-items: start;
+    max-width: 900px;
+    margin-inline: auto;
+}
+
+.tpl-arum .arm-polaroid {
+    position: relative;
+    padding: 12px 12px 24px;
+    background: #fffdf7;
+    box-shadow: 0 16px 40px rgba(61, 47, 38, .18);
+    text-align: center;
+}
+.tpl-arum .arm-polaroid-groom { transform: rotate(-2.2deg); }
+.tpl-arum .arm-polaroid-bride { transform: rotate(2deg); margin-top: 34px; }
+.tpl-arum .arm-polaroid .arm-tape { top: -13px; left: 50%; transform: translateX(-50%) rotate(-2deg); }
+
+.tpl-arum .arm-polaroid-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 4.4;
+    object-fit: cover;
+    filter: sepia(.16) saturate(.9);
+}
+
+.tpl-arum .arm-polaroid-name {
+    margin: 16px 0 0;
+    font-family: var(--script);
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    line-height: 1;
+    color: var(--accent);
+}
+.tpl-arum .arm-polaroid-full {
+    margin: 4px 0 0;
+    font-family: var(--display);
+    font-size: 1.02rem;
+    letter-spacing: .04em;
+}
+.tpl-arum .arm-polaroid-parents {
+    margin: 6px 0 0;
+    font-size: .72rem;
+    line-height: 1.6;
+    color: var(--muted);
+}
+
+.tpl-arum .arm-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    font-size: .68rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+.tpl-arum .arm-social .tpl-icon { width: 12px; height: 12px; }
+
+.tpl-arum .arm-heart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding-top: 110px;
+    color: var(--accent);
+}
+.tpl-arum .arm-heart .tpl-icon { width: 30px; height: 30px; fill: rgba(180, 87, 59, .14); }
+.tpl-arum .arm-heart span { font-family: var(--script); font-size: 1rem; color: var(--muted); }
+
+/* ---------------------------------------------------------------------
+   Quote
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-quote-section {
+    position: relative;
+    padding: clamp(54px, 8vw, 92px) 0;
+    background:
+        repeating-linear-gradient(0deg, rgba(94, 74, 59, .05) 0 1px, transparent 1px 30px),
+        #f8f1e3;
+}
+.tpl-arum .arm-quote-note {
+    position: relative;
+    max-width: 760px;
+    margin-inline: auto;
+    padding: clamp(30px, 5vw, 48px) clamp(24px, 5vw, 56px);
+    background: #fffaf0;
+    box-shadow: 0 12px 34px rgba(61, 47, 38, .11);
+    transform: rotate(.5deg);
+}
+.tpl-arum .arm-tape-quote { top: -13px; left: 50%; transform: translateX(-50%) rotate(1.5deg); }
+.tpl-arum .arm-quote-mark {
+    display: block;
+    font-family: var(--display);
+    font-size: 3.4rem;
+    line-height: .5;
+    color: var(--accent-2);
+}
+.tpl-arum .arm-quote-note blockquote {
+    margin: 8px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--ink-soft);
+}
+.tpl-arum .arm-quote-note figcaption {
+    margin-top: 16px;
+    font-family: var(--script);
+    font-size: 1.18rem;
+    color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------
+   Countdown
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-countdown-section { background: #efe2cd; }
+.tpl-arum .arm-countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(8px, 2vw, 18px);
+    max-width: 720px;
+    margin-inline: auto;
+}
+.tpl-arum .arm-count {
+    position: relative;
+    padding: clamp(16px, 3vw, 26px) 6px;
+    background: #fffaf0;
+    border: 1px solid rgba(94, 74, 59, .14);
+    box-shadow: 3px 3px 0 rgba(180, 87, 59, .16);
+    text-align: center;
+    transform: rotate(-.8deg);
+}
+.tpl-arum .arm-count:nth-child(even) { transform: rotate(.9deg); }
+.tpl-arum .arm-count strong {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(1.55rem, 4.4vw, 2.3rem);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+}
+.tpl-arum .arm-count span {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--script);
+    font-size: 1.05rem;
+    color: var(--muted);
+}
+
+/* ---------------------------------------------------------------------
+   Events
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-events { background: #f8f1e3; }
+.tpl-arum .arm-postcards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(18px, 3vw, 30px);
+}
+.tpl-arum .arm-postcard {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    padding: clamp(20px, 3.4vw, 32px);
+    background: #fffaf0;
+    border: 1px solid rgba(94, 74, 59, .16);
+    box-shadow: 0 10px 28px rgba(61, 47, 38, .1);
+}
+.tpl-arum .arm-postcard:nth-child(odd) { transform: rotate(-.6deg); }
+.tpl-arum .arm-postcard:nth-child(even) { transform: rotate(.7deg); }
+.tpl-arum .arm-postcard-stamp {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 54px;
+    border: 1px dashed rgba(180, 87, 59, .55);
+    background: rgba(180, 87, 59, .06);
+    color: var(--accent);
+}
+.tpl-arum .arm-postcard-stamp .tpl-icon { width: 20px; height: 20px; }
+.tpl-arum .arm-postcard-body { min-width: 0; }
+.tpl-arum .arm-postcard h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: clamp(1.2rem, 2.6vw, 1.45rem);
+    font-weight: 600;
+}
+.tpl-arum .arm-postcard-date { margin: 4px 0 0; font-size: .8rem; color: var(--ink-soft); }
+.tpl-arum .arm-postcard-time {
+    margin: 2px 0 0;
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.tpl-arum .arm-dash {
+    display: block;
+    width: 100%;
+    margin: 14px 0 10px;
+    border-top: 1px dashed rgba(94, 74, 59, .26);
+}
+.tpl-arum .arm-postcard-venue { margin: 0; font-weight: 600; font-size: .9rem; }
+.tpl-arum .arm-postcard-address { margin: 3px 0 14px; font-size: .74rem; line-height: 1.6; color: var(--muted); }
+
+.tpl-arum .arm-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    background: transparent;
+    color: var(--accent);
+    font-family: var(--body);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease;
+}
+.tpl-arum .arm-link:hover { background: var(--accent); color: var(--btn-ink); }
+.tpl-arum .arm-link-solid { background: var(--accent); color: var(--btn-ink); }
+.tpl-arum .arm-link-solid:hover { background: #9b472f; color: var(--btn-ink); }
+.tpl-arum .arm-link .tpl-icon { width: 13px; height: 13px; }
+
+.tpl-arum .arm-live { margin-top: 30px; text-align: center; }
+.tpl-arum .arm-live p { margin-bottom: 10px; }
+
+/* ---------------------------------------------------------------------
+   Story
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-story {
+    background:
+        repeating-linear-gradient(0deg, rgba(94, 74, 59, .055) 0 1px, transparent 1px 32px),
+        #efe2cd;
+}
+.tpl-arum .arm-journal {
+    max-width: 640px;
+    margin-inline: auto;
+    padding-left: 30px;
+    border-left: 2px solid rgba(180, 87, 59, .32);
+}
+.tpl-arum .arm-journal-entry {
+    position: relative;
+    padding: 0 0 28px 22px;
+}
+.tpl-arum .arm-journal-entry:last-child { padding-bottom: 0; }
+.tpl-arum .arm-journal-entry::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: -40px;
+    width: 16px;
+    height: 16px;
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    background: #efe2cd;
+}
+.tpl-arum .arm-journal-year {
+    font-family: var(--script);
+    font-size: 1.35rem;
+    color: var(--accent);
+}
+.tpl-arum .arm-journal-entry h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-size: 1.35rem;
+    font-weight: 600;
+}
+.tpl-arum .arm-journal-entry p { margin: 5px 0 0; font-size: .86rem; line-height: 1.75; color: var(--ink-soft); }
+
+/* ---------------------------------------------------------------------
+   Gallery
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-gallery-section { background: #f8f1e3; }
+.tpl-arum .arm-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(14px, 3vw, 26px);
+    padding: 10px 4px;
+}
+.tpl-arum .arm-snap {
+    position: relative;
+    padding: 9px 9px 30px;
+    border: 0;
+    background: #fffdf7;
+    box-shadow: 0 10px 26px rgba(61, 47, 38, .16);
+    cursor: zoom-in;
+    transition: transform .35s ease, box-shadow .35s ease;
+}
+.tpl-arum .arm-snap:nth-child(3n + 1) { transform: rotate(-2.4deg); }
+.tpl-arum .arm-snap:nth-child(3n + 2) { transform: rotate(1.6deg) translateY(10px); }
+.tpl-arum .arm-snap:nth-child(3n) { transform: rotate(-.8deg) translateY(-6px); }
+.tpl-arum .arm-snap:hover { transform: rotate(0) translateY(-4px); box-shadow: 0 18px 38px rgba(61, 47, 38, .24); }
+.tpl-arum .arm-snap img { width: 100%; aspect-ratio: 1; object-fit: cover; filter: sepia(.12) saturate(.94); }
+.tpl-arum .arm-snap::after {
+    content: '';
+    position: absolute;
+    bottom: 9px;
+    left: 50%;
+    width: 54px;
+    height: 4px;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    background: rgba(94, 74, 59, .12);
+}
+.tpl-arum .arm-hashtag {
+    margin: 32px 0 0;
+    font-family: var(--script);
+    font-size: clamp(1.3rem, 3.4vw, 1.7rem);
+    text-align: center;
+    color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------
+   Gifts
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-gifts { background: #efe2cd; }
+.tpl-arum .arm-gift-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 780px;
+    margin-inline: auto;
+}
+.tpl-arum .arm-gift-tag {
+    position: relative;
+    padding: 28px 24px 24px;
+    background: #fffaf0;
+    border: 1px solid rgba(94, 74, 59, .16);
+    box-shadow: 0 10px 28px rgba(61, 47, 38, .1);
+    text-align: center;
+    transform: rotate(-.7deg);
+}
+.tpl-arum .arm-gift-tag:nth-child(even) { transform: rotate(.8deg); }
+.tpl-arum .arm-gift-hole {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: #efe2cd;
+    box-shadow: inset 0 1px 3px rgba(61, 47, 38, .25);
+}
+.tpl-arum .arm-gift-bank {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 2px;
+    background: rgba(180, 87, 59, .1);
+    font-size: .58rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+.tpl-arum .arm-gift-number {
+    margin: 12px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.3rem, 3.4vw, 1.65rem);
+    font-weight: 600;
+    letter-spacing: .04em;
+    word-break: break-all;
+}
+.tpl-arum .arm-gift-name { margin: 2px 0 16px; font-size: .74rem; color: var(--muted); }
+.tpl-arum .arm-gift-tag .arm-link { width: 100%; }
+
+/* ---------------------------------------------------------------------
+   RSVP / wishes
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-rsvp { background: #f8f1e3; }
+.tpl-arum .arm-wishes { background: #efe2cd; }
+.tpl-arum .arm-form-card {
+    position: relative;
+    padding: clamp(24px, 4.5vw, 40px);
+    background: #fffaf0;
+    border: 1px solid rgba(94, 74, 59, .14);
+    box-shadow: 0 14px 36px rgba(61, 47, 38, .12);
+}
+.tpl-arum .arm-tape-form { top: -13px; left: 50%; transform: translateX(-50%) rotate(-1.4deg); }
+.tpl-arum .tw-label { font-family: var(--body); font-size: .58rem; letter-spacing: .2em; color: var(--muted); }
+.tpl-arum .tw-input,
+.tpl-arum .tw-textarea,
+.tpl-arum .tw-choice { background: rgba(243, 233, 215, .5); }
+.tpl-arum .tw-btn { background: var(--accent); letter-spacing: .22em; }
+.tpl-arum .tw-btn:hover { background: #9b472f; filter: none; }
+.tpl-arum .tw-alert-ok { --ok-bg: rgba(107, 112, 82, .12); --ok-ink: #3f452f; --ok-line: rgba(107, 112, 82, .4); }
+.tpl-arum .tw-alert-error { --err-bg: rgba(180, 87, 59, .08); --err-ink: #8c3a25; --err-line: rgba(180, 87, 59, .4); }
+.tpl-arum .tw-wish { background: rgba(243, 233, 215, .42); }
+.tpl-arum .tw-wish-head strong { color: var(--accent); }
+
+/* ---------------------------------------------------------------------
+   Closing
+   --------------------------------------------------------------------- */
+.tpl-arum .arm-closing {
+    position: relative;
+    padding: clamp(56px, 9vw, 104px) 0 clamp(50px, 8vw, 80px);
+    background:
+        repeating-linear-gradient(0deg, rgba(94, 74, 59, .05) 0 1px, transparent 1px 34px),
+        #efe2cd;
+}
+.tpl-arum .arm-closing-card {
+    position: relative;
+    max-width: 640px;
+    margin-inline: auto;
+    padding: clamp(30px, 5vw, 50px) clamp(24px, 5vw, 52px);
+    background: #fffaf0;
+    border: 1px solid rgba(94, 74, 59, .14);
+    box-shadow: 0 16px 42px rgba(61, 47, 38, .13);
+    text-align: center;
+}
+.tpl-arum .arm-tape-closing { top: -13px; left: 50%; transform: translateX(-50%) rotate(1.2deg); }
+.tpl-arum .arm-closing-hand { font-size: clamp(1.5rem, 3.6vw, 1.9rem); }
+.tpl-arum .arm-closing-text {
+    margin: 16px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1rem, 2.2vw, 1.14rem);
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--ink-soft);
+}
+.tpl-arum .arm-closing-names {
+    margin: 26px 0 0;
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 4.6vw, 2.2rem);
+    font-weight: 600;
+}
+.tpl-arum .arm-closing-names span { font-family: var(--script); color: var(--accent); font-size: .9em; }
+.tpl-arum .arm-closing-date {
+    margin: 6px 0 0;
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.tpl-arum .arm-closing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+}
+.tpl-arum .arm-credit {
+    margin: 32px 0 0;
+    font-family: var(--script);
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+/* Serpihan kertas */
+.arm-flecks {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+.arm-flecks span {
+    position: absolute;
+    border-radius: 1px;
+    background: rgba(180, 87, 59, .35);
+    animation: arm-fleck-drift linear infinite;
+}
+@keyframes arm-fleck-drift {
+    0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+    50% { transform: translate3d(18px, -22px, 0) rotate(90deg); }
+    100% { transform: translate3d(-12px, -46px, 0) rotate(180deg); }
+}
+
+/* ---------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------- */
+@media (max-width: 900px) {
+    .tpl-arum .arm-hero .arm-wrap { grid-template-columns: 1fr; }
+    .tpl-arum .arm-hero-strip { max-width: 360px; margin-inline: auto; transform: rotate(1.6deg); }
+    .tpl-arum .arm-couple-board { grid-template-columns: 1fr; gap: 26px; }
+    .tpl-arum .arm-polaroid { max-width: 340px; margin-inline: auto; transform: rotate(-1.2deg); }
+    .tpl-arum .arm-polaroid-bride { margin-top: 0; transform: rotate(1.2deg); }
+    .tpl-arum .arm-heart { padding-top: 0; }
+}
+
+@media (max-width: 680px) {
+    .tpl-arum .arm-postcards,
+    .tpl-arum .arm-gift-grid { grid-template-columns: 1fr; }
+    .tpl-arum .arm-gallery { grid-template-columns: repeat(2, 1fr); }
+    .tpl-arum .arm-countdown { grid-template-columns: repeat(2, 1fr); }
+    .tpl-arum .arm-cover-date { letter-spacing: .24em; }
+    .tpl-arum .arm-cover-foot { font-size: .86rem; }
+}
+
+/* Inisial mempelai (pengganti foto bila tidak diunggah) */
+.tpl-arum .arm-initials {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 4 / 4.4;
+    background: linear-gradient(160deg, #f0e2c8, #ddc9a6);
+    color: #9c5a34;
+    font-family: var(--script, cursive);
+    font-size: clamp(2.8rem, 10vw, 4.2rem);
+    line-height: 1;
+}
+
+/* Kontrol musik: ikon bergoyang cepat saat diputar */
+.tpl-arum [data-music-toggle].is-playing .tpl-icon { animation: arm-music-wiggle 1.2s ease-in-out infinite; }
+@keyframes arm-music-wiggle {
+    0%, 100% { transform: rotate(-12deg); }
+    50% { transform: rotate(12deg); }
+}

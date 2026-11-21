@@ -1,0 +1,594 @@
+/* =====================================================================
+   Markas Punokawan Wedding — Template Mechanics
+   Fondasi netral: reset, cover, dock, reveal, lightbox, form.
+   Setiap template memuat file ini + CSS tema miliknya sendiri.
+   ===================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body.tpl {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--bg, #ffffff);
+    color: var(--ink, #222222);
+    font-family: var(--body, Georgia, serif);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body.tpl.cover-open { overflow: hidden; }
+
+.tpl img { display: block; max-width: 100%; }
+.tpl a { color: inherit; }
+.tpl button { font: inherit; cursor: pointer; }
+.tpl [hidden] { display: none !important; }
+
+.tpl ::selection { background: var(--accent, #c7a15a); color: var(--btn-ink, #fff); }
+
+.tpl-icon {
+    width: 1.1em;
+    height: 1.1em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.65;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex: none;
+}
+
+/* ---------------------------------------------------------------------
+   Cover / opening screen
+   --------------------------------------------------------------------- */
+.tpl-cover {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: max(22px, env(safe-area-inset-top)) 22px max(22px, env(safe-area-inset-bottom));
+    background: var(--bg, #fbf6ea);
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+body.tpl.is-open .tpl-cover {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.tpl-cover-inner {
+    position: relative;
+    z-index: 4;
+    width: min(560px, 100%);
+    text-align: center;
+}
+
+.tpl-cover-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.tpl-cover-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tpl-cover-scroll {
+    position: absolute;
+    bottom: max(18px, env(safe-area-inset-bottom));
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: .62rem;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+    opacity: .7;
+}
+
+/* ---------------------------------------------------------------------
+   Dock navigation
+   --------------------------------------------------------------------- */
+.tpl-dock {
+    position: fixed;
+    left: 50%;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    z-index: 70;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 6px;
+    border-radius: 999px;
+    background: var(--dock-bg, rgba(20, 20, 20, .78));
+    color: var(--dock-ink, #f7f2e8);
+    border: 1px solid rgba(255, 255, 255, .14);
+    box-shadow: 0 16px 42px rgba(0, 0, 0, .28);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transform: translateX(-50%);
+    transition: opacity .55s ease, transform .55s ease;
+}
+
+body.cover-open .tpl-dock {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 18px);
+}
+
+.tpl-dock a,
+.tpl-dock button {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: inherit;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+}
+
+.tpl-dock a:hover,
+.tpl-dock button:hover,
+.tpl-dock a.is-active {
+    background: rgba(255, 255, 255, .14);
+}
+
+.tpl-dock a:active,
+.tpl-dock button:active { transform: scale(.92); }
+
+.tpl-dock .tpl-icon { width: 18px; height: 18px; }
+
+.tpl-dock .dock-tip {
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: rgba(12, 12, 12, .9);
+    color: #fff;
+    font-size: .58rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease;
+}
+
+.tpl-dock a:hover .dock-tip,
+.tpl-dock button:hover .dock-tip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.tpl-dock .is-playing .tpl-icon { animation: tpl-spin 4s linear infinite; }
+
+@keyframes tpl-spin { to { transform: rotate(360deg); } }
+
+/* ---------------------------------------------------------------------
+   Indikator musik (tombol [data-music-toggle] diberi kelas .is-playing
+   oleh invitation-core.js saat audio diputar). Tiap template menimpa
+   animasinya sendiri agar tidak seragam.
+   --------------------------------------------------------------------- */
+[data-music-toggle] .tpl-icon { transition: transform .3s ease, opacity .3s ease; }
+[data-music-toggle].is-playing .tpl-icon { animation: tpl-music-spin 3.6s linear infinite; }
+
+@keyframes tpl-music-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    [data-music-toggle].is-playing .tpl-icon { animation: none; opacity: .85; }
+}
+
+/* ---------------------------------------------------------------------
+   Scroll reveal
+   --------------------------------------------------------------------- */
+.tpl [data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .95s cubic-bezier(.2, .7, .2, 1), transform .95s cubic-bezier(.2, .7, .2, 1);
+}
+
+.tpl [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.tpl [data-reveal="left"] { transform: translateX(-34px); }
+.tpl [data-reveal="right"] { transform: translateX(34px); }
+.tpl [data-reveal="scale"] { transform: scale(.94); }
+.tpl [data-reveal].is-visible { transform: none; }
+
+/* ---------------------------------------------------------------------
+   Lightbox
+   --------------------------------------------------------------------- */
+.tpl-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 130;
+    display: none;
+    place-items: center;
+    padding: 24px;
+    background: rgba(5, 5, 5, .94);
+    backdrop-filter: blur(6px);
+}
+
+.tpl-lightbox.is-open { display: grid; }
+
+.tpl-lightbox img {
+    max-width: min(1080px, 92vw);
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: 2px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .6);
+}
+
+.tpl-lightbox-close {
+    position: absolute;
+    top: max(18px, env(safe-area-inset-top));
+    right: 18px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .35);
+    color: #fff;
+}
+
+.tpl-lightbox-close .tpl-icon { width: 20px; height: 20px; }
+
+/* ---------------------------------------------------------------------
+   Generic form / RSVP / wishes (shared partials)
+   --------------------------------------------------------------------- */
+.tw-block { width: 100%; }
+
+.tw-form {
+    display: grid;
+    gap: 16px;
+}
+
+.tw-field { display: grid; gap: 7px; }
+
+.tw-label {
+    display: block;
+    font-family: var(--body, sans-serif);
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted, #777);
+}
+
+.tw-label em {
+    text-transform: none;
+    letter-spacing: .02em;
+    font-style: italic;
+    opacity: .72;
+}
+
+.tw-input,
+.tw-textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid var(--line, rgba(0, 0, 0, .18));
+    border-radius: var(--field-radius, 2px);
+    background: var(--field-bg, rgba(255, 255, 255, .35));
+    color: var(--ink, #222);
+    font-family: var(--body, sans-serif);
+    font-size: .9rem;
+    line-height: 1.5;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.tw-input::placeholder,
+.tw-textarea::placeholder { color: var(--muted, #888); opacity: .75; }
+
+.tw-input:focus,
+.tw-textarea:focus {
+    border-color: var(--accent, #c7a15a);
+    box-shadow: 0 0 0 3px var(--focus, rgba(199, 161, 90, .18));
+}
+
+.tw-textarea { min-height: 96px; resize: vertical; }
+
+.tw-choices {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.tw-choices legend { margin-bottom: 4px; padding: 0; }
+
+.tw-choice {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 12px 14px;
+    border: 1px solid var(--line, rgba(0, 0, 0, .18));
+    border-radius: var(--field-radius, 2px);
+    background: var(--field-bg, rgba(255, 255, 255, .25));
+    cursor: pointer;
+    font-size: .86rem;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.tw-choice:hover { border-color: var(--accent, #c7a15a); }
+
+.tw-choice:has(input:checked) {
+    border-color: var(--accent, #c7a15a);
+    background: var(--accent-soft, rgba(199, 161, 90, .12));
+}
+
+.tw-choice input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--accent, #c7a15a);
+    flex: none;
+}
+
+.tw-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    padding: 15px 24px;
+    border: 0;
+    border-radius: var(--field-radius, 2px);
+    background: var(--accent, #c7a15a);
+    color: var(--btn-ink, #fff);
+    font-family: var(--body, sans-serif);
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    transition: filter .2s ease, transform .2s ease;
+}
+
+.tw-btn:hover { filter: brightness(1.06); }
+.tw-btn:active { transform: translateY(1px); }
+.tw-btn:disabled { opacity: .55; cursor: not-allowed; }
+
+.tw-alert {
+    margin: 0 0 18px;
+    padding: 12px 15px;
+    border-radius: var(--field-radius, 2px);
+    font-size: .82rem;
+    line-height: 1.6;
+}
+
+.tw-alert-ok {
+    border: 1px solid var(--ok-line, #b9d6bf);
+    background: var(--ok-bg, #eef7ef);
+    color: var(--ok-ink, #1f5130);
+}
+
+.tw-alert-error {
+    border: 1px solid var(--err-line, #e6b6b6);
+    background: var(--err-bg, #fbeeee);
+    color: var(--err-ink, #7a2222);
+}
+
+.tw-note {
+    margin: 0 0 18px;
+    padding: 12px 15px;
+    border: 1px dashed var(--line, rgba(0, 0, 0, .24));
+    border-radius: var(--field-radius, 2px);
+    font-size: .76rem;
+    line-height: 1.65;
+    color: var(--muted, #777);
+}
+
+.tw-wish-list {
+    display: grid;
+    gap: 12px;
+    max-height: 460px;
+    margin-top: 24px;
+    padding-right: 4px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.tw-wish {
+    padding: 16px 18px;
+    border: 1px solid var(--line, rgba(0, 0, 0, .14));
+    border-radius: var(--field-radius, 2px);
+    background: var(--field-bg, rgba(255, 255, 255, .3));
+}
+
+.tw-wish-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    font-size: .72rem;
+}
+
+.tw-wish-head strong {
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+
+.tw-wish-head span {
+    color: var(--muted, #888);
+    font-size: .64rem;
+    white-space: nowrap;
+}
+
+.tw-wish p {
+    margin: 8px 0 0;
+    font-size: .85rem;
+    line-height: 1.7;
+}
+
+.tw-empty {
+    margin: 0;
+    padding: 18px;
+    border: 1px dashed var(--line, rgba(0, 0, 0, .2));
+    border-radius: var(--field-radius, 2px);
+    font-size: .8rem;
+    text-align: center;
+    color: var(--muted, #888);
+}
+
+/* ---------------------------------------------------------------------
+   Utility
+   --------------------------------------------------------------------- */
+.tpl-section {
+    position: relative;
+    padding: clamp(70px, 10vw, 130px) 22px;
+}
+
+.tpl-wrap {
+    width: min(1080px, 100%);
+    margin-inline: auto;
+}
+
+.tpl-kicker {
+    display: inline-block;
+    font-family: var(--body, sans-serif);
+    font-size: .62rem;
+    font-weight: 600;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--accent, #c7a15a);
+}
+
+.tpl-title {
+    margin: .25em 0 0;
+    font-family: var(--display, Georgia, serif);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: .01em;
+}
+
+.tpl-script {
+    font-family: var(--script, cursive);
+    font-weight: 400;
+    line-height: 1;
+}
+
+.tpl-rule {
+    display: block;
+    width: 64px;
+    height: 1px;
+    margin: 20px auto;
+    background: var(--accent, #c7a15a);
+    opacity: .55;
+}
+
+.tpl-muted { color: var(--muted, #777); }
+
+.tpl-center { text-align: center; }
+
+.tpl-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border: 1px solid var(--accent, #c7a15a);
+    border-radius: var(--field-radius, 2px);
+    background: transparent;
+    color: var(--accent, #c7a15a);
+    font-family: var(--body, sans-serif);
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    transition: background .22s ease, color .22s ease;
+}
+
+.tpl-cta:hover {
+    background: var(--accent, #c7a15a);
+    color: var(--btn-ink, #fff);
+}
+
+.tpl-cta .tpl-icon { width: 15px; height: 15px; }
+
+.tpl-cover-open {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 26px;
+    padding: 14px 30px;
+    border: 1px solid var(--accent, #c7a15a);
+    border-radius: var(--btn-radius, 999px);
+    background: var(--accent, #c7a15a);
+    color: var(--btn-ink, #fff);
+    font-family: var(--body, sans-serif);
+    font-size: .64rem;
+    font-weight: 700;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .14);
+    transition: transform .25s ease, filter .25s ease;
+}
+
+.tpl-cover-open:hover { transform: translateY(-2px); filter: brightness(1.06); }
+.tpl-cover-open .tpl-icon { width: 15px; height: 15px; }
+
+/* Nama tamu pada cover */
+.tpl-guest {
+    margin-top: 20px;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+.tpl-guest span {
+    display: block;
+    font-size: .58rem;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    opacity: .68;
+}
+
+.tpl-guest strong {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--display, Georgia, serif);
+    font-size: 1.18rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+}
+
+@media (max-width: 720px) {
+    .tpl-dock .dock-tip { display: none; }
+    .tpl-dock a,
+    .tpl-dock button { width: 40px; height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .tpl *,
+    .tpl *::before,
+    .tpl *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+    .tpl [data-reveal] { opacity: 1; transform: none; }
+}
